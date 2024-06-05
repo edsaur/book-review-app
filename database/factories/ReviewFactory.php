@@ -20,8 +20,10 @@ class ReviewFactory extends Factory
             'book_id' => null,
             'stars' => fake()->numberBetween(1,5),
             'content' => fake()->paragraph(),
-            'created_at' => fake()->dateTimeBetween('-20 years'), 
-            'updated_at' => fake()->dateTimeBetween('created_at', 'now') 
+            'created_at' => fake()->dateTimeBetween('-2 years'), 
+            'updated_at' => function (array $attributes) {
+                return fake()->dateTimeBetween($attributes['created_at'], 'now');
+            }
         ];
     }
 
